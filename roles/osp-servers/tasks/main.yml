@@ -33,9 +33,6 @@
   register: instancefloatingip
   loop: "{{ lookup('dict', osp_servers) }}"
 
-- name: debug
-  debug: msg="{{ instancefloatingip.results }}"
-
 - name: Wait for server to be available
   wait_for:
     host: "{{ item.floating_ip.floating_ip_address }}"
@@ -43,4 +40,4 @@
     search_regex: OpenSSH
     timeout: 600
   delegate_to: "{{ inventory_hostname }}"
-  loop: instancefloatingip.results
+  loop: "{{ instancefloatingip.results }}"
