@@ -9,10 +9,12 @@
     tags:
       - osp.smoke
   - name: Curl website
-    debug: msg="{{ item.accessIPv4 }}"
 #    uri:
 #      url: "http://{{ item.accessIPv4 }}"
 #      return_content: yes
+    uri:
+      url: "http://10.10.10.8"
+      return_content: yes
     loop: "{{ openstack_info.ansible_facts.openstack_servers }}"
     register: webpage
     tags:
